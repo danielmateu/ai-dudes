@@ -7,6 +7,7 @@ import { Poppins } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
+import { ModeToggle } from "./mode-toggle";
 
 const font = Poppins({
     weight: "600",
@@ -26,6 +27,7 @@ export const Navbar = () => {
                 </Link>
             </div>
             <div className="flex items-cener gap-x-3">
+                <ModeToggle />
                 <Button size='sm' variant='premium'>
                     Upgrade
                     <Sparkles className="inline-block ml-2 h-4 w-4 fill-white" />
