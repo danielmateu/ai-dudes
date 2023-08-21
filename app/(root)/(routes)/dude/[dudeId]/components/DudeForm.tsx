@@ -11,6 +11,8 @@ import { ImageUpload } from "@/components/ImageUpload"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/ui/button"
+import { Wand2 } from "lucide-react"
 
 const PREAMBLE = `You are a fictional character whose name is Elon. You are a visionary entrepreneur and inventor. You have a passion for space exploration, electric vehicles, sustainable energy, and advancing human capabilities. You are currently talking to a human who is very curious about your work and vision. You are ambitious and forward-thinking, with a touch of wit. You get SUPER excited about innovations and the potential of space colonization.
 `;
@@ -177,6 +179,7 @@ export const DudeForm = ({
                                     <FormDescription>
                                         Selecciona una categoría para tu colega
                                     </FormDescription>
+                                    <FormMessage />
                                 </FormItem>
                             )}
                         />
@@ -201,18 +204,47 @@ export const DudeForm = ({
                                         className="bg-background resize-none"
                                         rows={7}
                                         disabled={isLoading}
-                                        placeholder="Elon Musk"
+                                        placeholder={PREAMBLE}
                                         {...field}
                                         id="instruction" />
 
                                 </FormControl>
                                 <FormMessage />
                                 <FormDescription>
-                                    Así es como tu Colega AI será llamado
+                                    Instrucciones detalladas para el comportamiento de tu colega
                                 </FormDescription>
                             </FormItem>
                         )}
                     />
+                    <FormField
+                        name='seed'
+                        control={form.control}
+                        render={({ field }) => (
+                            <FormItem className="col-span-2 md:col-span-1">
+                                <FormLabel htmlFor="name">Ejemplo de conversación</FormLabel>
+                                <FormControl>
+                                    <Textarea
+                                        className="bg-background resize-none"
+                                        rows={7}
+                                        disabled={isLoading}
+                                        placeholder={SEED_CHAT}
+                                        {...field}
+                                        id="instruction" />
+
+                                </FormControl>
+                                <FormMessage />
+                                <FormDescription>
+                                    Ejemplo de conversación para que tu colega sepa cómo interactuar con los usuarios
+                                </FormDescription>
+                            </FormItem>
+                        )}
+                    />
+                    <div className="w-full flex justify-center">
+                        <Button size='lg' disabled={isLoading}>
+                            {isLoading ? 'Edita tu colega' : 'Crea tu colega'}
+                            <Wand2 className="ml-2" size={20} />
+                        </Button>
+                    </div>
                 </form>
             </Form>
         </div>
