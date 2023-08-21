@@ -25,7 +25,7 @@ export const Navbar = () => {
                 <Link href="/">
                     <h1 className={cn("hidden md:block text-xl md:text-3xl font-semibold text-primary",
                         font.className
-                    )}>ai dudes</h1>
+                    )}>dudes.ai</h1>
                 </Link>
             </div>
             <div className="flex items-cener gap-x-3">
