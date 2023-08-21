@@ -7,6 +7,7 @@ import * as z from 'zod'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
+import { ImageUpload } from "@/components/ImageUpload"
 interface DudeFormProps {
     initialData: Dude | null
     categories: Category[]
@@ -75,7 +76,11 @@ export const DudeForm = ({
                         render={({ field }) => (
                             <FormItem className="flex flex-col items-center justify-center space-y-4">
                                 <FormControl>
-                                    Image Upload Component
+                                    <ImageUpload
+                                        disabled={isLoading}
+                                        onChange={field.onChange}
+                                        value={field.value}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
