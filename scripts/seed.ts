@@ -6,17 +6,17 @@ async function main() {
     try {
         await db.category.createMany({
             data: [
-                { name: 'Gente Famosa' },
-                { name: 'Peliculas y Televisión' },
-                { name: 'Música' },
-                { name: 'Videojuegos' },
-                { name: 'Ciencia y Tecnología' },
-                { name: 'Deportes' },
-                { name: 'Cientificos' }
+                { name: 'Famous People' },
+                { name: 'Movies & TV' },
+                { name: 'Musicians' },
+                { name: 'Games' },
+                { name: 'Animals' },
+                { name: 'Philosophy' },
+                { name: 'Scientist' }
             ]
         })
     } catch (error) {
-        console.log('Error seeding default categories ', error);
+        console.error('Error seeding default categories ', error);
     } finally {
         await db.$disconnect();
     }

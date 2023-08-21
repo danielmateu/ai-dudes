@@ -12,3 +12,20 @@ model Category {
   id   String @id @default(uuid())
   name String
 }
+
+model UserApiLimit {
+  id        String   @id
+  userId    String   @unique
+  count     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+}
+
+model UserSubscription {
+  id                        String    @id
+  userId                    String    @unique
+  stripe_customer_id        String?   @unique
+  stripe_subscription_id    String?   @unique
+  stripe_price_id           String?
+  stripe_current_period_end DateTime?
+}
