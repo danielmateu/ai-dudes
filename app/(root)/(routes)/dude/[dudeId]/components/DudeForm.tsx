@@ -92,10 +92,28 @@ export const DudeForm = ({
                 await axios.post(`/api/dude`, values)
             }
 
-            toast({
-                variant: 'default',
-                description: 'Colega creado exitosamente'
-            })
+            // Si hay initialData
+
+            if (initialData) {
+                toast({
+                    variant: 'default',
+                    description: 'Colega actualizado correctamente'
+                })
+            }
+
+            // Si no hay initialData
+
+            if (!initialData) {
+                toast({
+                    variant: 'default',
+                    description: 'Colega creado correctamente'
+                })
+            }
+
+            // toast({
+            //     variant: 'default',
+            //     description: 'Colega creado exitosamente'
+            // })
 
             router.refresh()
             router.push('/')
@@ -272,7 +290,7 @@ export const DudeForm = ({
                     />
                     <div className="w-full flex justify-center">
                         <Button size='lg' disabled={isLoading}>
-                            {isLoading ? 'Edita a tu colega' : 'Crea a tu colega'}
+                            {initialData ? 'Edita tu colega' : 'Crea a tu colega'}
                             <Wand2 className="ml-2" size={20} />
                         </Button>
                     </div>
