@@ -1,12 +1,17 @@
+import { Categories } from '@/components/Categories'
 import { SearchInput } from '@/components/SearchInput'
-import { UserButton } from '@clerk/nextjs'
+import prismabd from '@/lib/prismadb'
+
 import React from 'react'
 
-const RootPage = () => {
+const RootPage = async () => {
+
+    const categories = await prismabd.category.findMany()
     return (
         <div className='h-full p-4 space-y-2'>
-            {/* <UserButton afterSignOutUrl='/' /> */}
+
             <SearchInput />
+            <Categories data={categories} />
         </div>
     )
 }
