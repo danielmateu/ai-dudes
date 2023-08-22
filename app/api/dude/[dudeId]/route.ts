@@ -1,5 +1,5 @@
 import prismabd from "@/lib/prismadb";
-import { currentUser } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function PATCH(req: Request,
@@ -46,5 +46,32 @@ export async function PATCH(req: Request,
         return new NextResponse('Internal Error', { status: 500 });
     } finally {
 
+    }
+}
+
+export async function DELETE(
+    request: Request,
+    { params }: { params: { dudeId: string } }
+) {
+    try {
+
+        const { userId } = auth()
+
+        if (!userId) {
+            return new NextResponse('No tienes autorización para realizar esta acción', { status: 410 });
+        }
+
+        const dude = await prismabd.dude.delete({
+            where: {
+                id: params.dudeId,
+                userId
+            }
+        })
+
+        return NextResponse.json(dude);
+
+    } catch (error) {
+        console.log('[DUDE_DELETE]', error);
+        return new NextResponse('Internal Error', { status: 500 });
     }
 }
