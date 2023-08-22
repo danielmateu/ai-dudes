@@ -34,7 +34,7 @@ export const Navbar = () => {
                     Upgrade
                     <Sparkles className="inline-block ml-2 h-4 w-4 fill-white" />
                 </Button>
-                <UserButton />
+                <UserButton afterSignOutUrl="/" />
             </div>
         </div>
     )

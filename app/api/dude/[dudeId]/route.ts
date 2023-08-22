@@ -26,6 +26,7 @@ export async function PATCH(req: Request,
         const dude = await prismabd.dude.update({
             where: {
                 id: params.dudeId,
+                userId: user.id
             },
             data: {
                 categoryId,

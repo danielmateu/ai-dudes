@@ -1,5 +1,6 @@
 import prismabd from "@/lib/prismadb"
 import { DudeForm } from "./components/DudeForm"
+import { auth, redirectToSignIn } from "@clerk/nextjs"
 
 interface DudePageProps {
     params: {
@@ -11,11 +12,15 @@ const DudePage = async ({
     params
 }: DudePageProps) => {
 
+    const { userId } = auth()
     // Todo : Revisar subscripción
+
+    if (!userId) return redirectToSignIn()
 
     const dude = await prismabd.dude.findUnique({
         where: {
-            id: params.dudeId
+            id: params.dudeId,
+            userId
         }
     })
 
