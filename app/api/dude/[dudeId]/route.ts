@@ -1,4 +1,4 @@
-import prismabd from "@/lib/prismadb";
+import prismadb from "@/lib/prismadb";
 import { auth, currentUser } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
@@ -23,7 +23,7 @@ export async function PATCH(req: Request,
 
         // TODO: Check for subscriptions
 
-        const dude = await prismabd.dude.update({
+        const dude = await prismadb.dude.update({
             where: {
                 id: params.dudeId,
                 userId: user.id
@@ -62,7 +62,7 @@ export async function DELETE(
             return new NextResponse('No tienes autorización para realizar esta acción', { status: 410 });
         }
 
-        const dude = await prismabd.dude.delete({
+        const dude = await prismadb.dude.delete({
             where: {
                 id: params.dudeId,
                 userId

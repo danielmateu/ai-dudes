@@ -5,8 +5,8 @@ Tailwind
 TypeScript
 ShadCN
 Clerk
-Prisma para gestion de la DB
 
+Prisma para gestion de la DB
 Cada vez que modifiquemos el schema de prisma -> npx prisma generate + npx prisma db push
 npx prisma studio -> PAra abrir prisma client
 

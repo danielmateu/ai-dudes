@@ -9,6 +9,7 @@ import { UserButton } from "@clerk/nextjs";
 import { Button } from "./ui/button";
 import { ModeToggle } from "./mode-toggle";
 import { MobileSidebar } from "./MobileSidebar";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const font = Poppins({
     weight: "600",
@@ -16,7 +17,16 @@ const font = Poppins({
 
 })
 
-export const Navbar = () => {
+interface NavbarProps {
+    isPro: boolean
+}
+
+export const Navbar = ({
+    isPro
+}: NavbarProps) => {
+
+    const proModal = useProModal()
+
     return (
         <div className="fixed w-full z-50 flex justify-between items-center py-2 px-4 border-b border-primary/10 bg-secondary h-16">
             <div className="flex items-center">
@@ -30,10 +40,12 @@ export const Navbar = () => {
             </div>
             <div className="flex items-cener gap-x-3">
                 <ModeToggle />
-                <Button size='sm' variant='premium'>
-                    Upgrade
-                    <Sparkles className="inline-block ml-2 h-4 w-4 fill-white" />
-                </Button>
+                {!isPro && (
+                    <Button size='sm' variant='premium' onClick={proModal.onOpen}>
+                        Upgrade
+                        <Sparkles className="inline-block ml-2 h-4 w-4 fill-white" />
+                    </Button>
+                )}
                 <UserButton afterSignOutUrl="/" />
             </div>
         </div>

@@ -1,6 +1,6 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["fullTextIndex", "fullTextSearch"]
 }
 
 datasource db {
@@ -16,29 +16,22 @@ model Category {
 }
 
 model Dude {
-  id           String   @id @default(uuid())
+  id           String    @id @default(uuid())
   userId       String
   userName     String
   src          String
-  name         String   @db.Text
+  name         String    @db.Text
   description  String
-  instructions String   @db.Text
-  seed         String   @db.Text
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String
-
-  messages Message[]
+  instructions String    @db.Text
+  seed         String    @db.Text
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  categoryId   String
+  category     Category  @relation(fields: [categoryId], references: [id])
+  messages     Message[]
 
   @@index([categoryId])
   @@fulltext([name])
-}
-
-enum Role {
-  user
-  system
 }
 
 model Message {
@@ -47,13 +40,20 @@ model Message {
   content   String   @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  dudeId String
-  userId String
-
-  dude Dude @relation(fields: [dudeId], references: [id], onDelete: Cascade)
+  dudeId    String
+  userId    String
+  dude      Dude     @relation(fields: [dudeId], references: [id], onDelete: Cascade)
 
   @@index([dudeId])
+}
+
+model UserSubscription {
+  id                     String    @id
+  userId                 String    @unique
+  stripeCustomerId       String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
+  stripePriceId          String?   @map("stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map("stripe_current_period_end")
 }
 
 model UserApiLimit {
@@ -64,11 +64,7 @@ model UserApiLimit {
   updatedAt DateTime
 }
 
-model UserSubscription {
-  id                        String    @id
-  userId                    String    @unique
-  stripe_customer_id        String?   @unique
-  stripe_subscription_id    String?   @unique
-  stripe_price_id           String?
-  stripe_current_period_end DateTime?
+enum Role {
+  user
+  system
 }

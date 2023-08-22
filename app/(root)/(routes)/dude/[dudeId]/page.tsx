@@ -1,4 +1,4 @@
-import prismabd from "@/lib/prismadb"
+import prismadb from "@/lib/prismadb"
 import { DudeForm } from "./components/DudeForm"
 import { auth, redirectToSignIn } from "@clerk/nextjs"
 
@@ -17,14 +17,14 @@ const DudePage = async ({
 
     if (!userId) return redirectToSignIn()
 
-    const dude = await prismabd.dude.findUnique({
+    const dude = await prismadb.dude.findUnique({
         where: {
             id: params.dudeId,
             userId
         }
     })
 
-    const categories = await prismabd.category.findMany()
+    const categories = await prismadb.category.findMany()
 
     return (
         <DudeForm
