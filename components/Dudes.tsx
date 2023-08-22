@@ -36,7 +36,7 @@ export const Dudes = ({
     }
 
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 pb-10 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 pb-10 gap-2">
             {
                 data.map((dude) => (
                     <Card
@@ -54,7 +54,9 @@ export const Dudes = ({
                                         src={dude.src}
                                         alt={dude.name}
                                         className="rounded-xl object-cover"
-                                        fill
+                                        // fill
+                                        width={128}
+                                        height={128}
                                     />
                                 </div>
                                 <p className="font-semibold">
