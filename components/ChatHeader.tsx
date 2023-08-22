@@ -7,7 +7,7 @@ import { Dude, Message } from "@prisma/client";
 import { useUser } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
-// import { BotAvatar } from "@/components/bot-avatar";
+
 import {
     DropdownMenu,
     DropdownMenuContent,

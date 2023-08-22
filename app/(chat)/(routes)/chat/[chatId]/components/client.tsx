@@ -9,11 +9,6 @@ import { ChatHeader } from "@/components/ChatHeader";
 import { ChatMessages } from "@/components/ChatMessages";
 import { ChatForm } from "@/components/ChatForm";
 
-// import { ChatForm } from "@/components/chat-form";
-// import { ChatHeader } from "@/components/chat-header";
-// import { ChatMessages } from "@/components/chat-messages";
-// import { ChatMessageProps } from "@/components/chat-message";
-
 interface ChatClientProps {
     dude: Dude & {
         messages: Message[];
