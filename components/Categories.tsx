@@ -51,7 +51,7 @@ export const Categories = ({
                         `,
                     !categoryId ? 'bg-primary/25' : 'bg-primary/10'
                 )}>
-                Nuevo
+                Nuevas entradas
             </button>
             {
                 data.map((category) => (
